@@ -1,4 +1,6 @@
 .DS_Store
+.idea
+build/
 bin-release
 bin-debug
 AS3GifPlayer/bin
