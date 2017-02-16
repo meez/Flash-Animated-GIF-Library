@@ -4,4 +4,3 @@ build/
 bin-release
 bin-debug
 AS3GifPlayer/bin
-*.swc
