@@ -147,14 +147,14 @@ package com.worlize.gif
 		
 		public function gotoAndPlay(requestedIndex:uint):void {
 			lastQuantizationError = 0;
-			goto(requestedIndex-1);
+			gotoInternal(requestedIndex-1);
 			play();
 		}
 		
 		public function gotoAndStop(requestedIndex:uint):void {
 			stop();
 			lastQuantizationError = 0;
-			goto(requestedIndex-1);
+			gotoInternal(requestedIndex-1);
 		}
 		
 		public function play():void {
@@ -164,7 +164,7 @@ package com.worlize.gif
 			// single-frame file, nothing to play but we can
 			// render the first frame.
 			if (_frameCount === 1) {
-				goto(0);
+				gotoInternal(0);
 			}
 			else {
 				timer.start();
@@ -189,20 +189,20 @@ package com.worlize.gif
 			if (_currentFrame + 1 >= _frameCount) {
 				currentLoop ++;
 				if (_loopCount === 0 || currentLoop < _loopCount) {
-					goto(0);
+					gotoInternal(0);
 				}
 				else {
 					stop();
 				}
 			}
 			else {
-				goto(_currentFrame + 1);
+				gotoInternal(_currentFrame + 1);
 			}
 		}
 		
 		// This private API function uses zero-based indices, while the public
 		// facing API uses one-based indices
-		private function goto(requestedIndex:uint):void {
+		private function gotoInternal(requestedIndex:uint):void {
 			if (requestedIndex >= _frameCount || requestedIndex < 0) {
 				throw new RangeError("The requested frame is out of bounds.");
 			}
